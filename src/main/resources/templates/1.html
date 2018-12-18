@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>开始</title>
+ <!-- jquery -->
+    <script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<!-- layer -->
+    <script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+</head>
+<body>
+                <div class="col-md-5">
+	       	 		<button class="btn btn-primary btn-block" type="submit" onclick="dologin()">开始</button>
+	       	 	</div>
+</body>
+<script type="text/javascript">
+
+function dologin(){
+	var data={"name":"电冰箱",age:1999};
+	$.ajax({
+        type:"post",
+        url:"/prefix/log1",
+        dataType : "json", 
+        data: JSON.stringify(data) ,
+        contentType:"application/json;charset=utf-8", 
+        success:function(data) {
+            alert(data.name + ":" + data.age);
+        }
+    });
+
+
+}
+</script>
+</html>

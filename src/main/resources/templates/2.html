@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>开始</title>
+ <!-- jquery -->
+    <script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<!-- layer -->
+    <script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+</head>
+<body>
+
+	       	 	<div class="col-md-5">
+	       	 		<button class="btn btn-primary btn-block" type="submit" onclick="dologin1()">读配置</button>
+	       	 	</div>
+                <div class="col-md-5">
+	       	 		<button class="btn btn-primary btn-block" type="submit" onclick="dologin()">发日志</button>
+	       	 	</div>
+	       	 	
+</body>
+<script type="text/javascript">
+
+function dologin(){
+	var data1={"msg1":{"uuid":"string",
+             "type":"string",
+             "context":{"channel":"string",
+                 "page":"string",
+                 "stage":"String"},
+                 "data":"String"},
+			"checksuml":"0",
+			"checksumc":"0"			
+	};
+	$.ajax({
+        type:"post",
+        url:"/URLPrefix/logtoserver",
+        dataType : "json", 
+        data: JSON.stringify(data1) ,
+        contentType:"application/json;charset=utf-8", 
+        success:function(result) {
+            console.log(result);
+        },
+        error:function(){
+        	 alert(失败);
+	    }
+    });
+}
+
+function dologin1(){
+	 
+
+	$.ajax({
+	    type:"post",
+	    url:"/URLPrefix/logconfig",
+	    data:"channel=1",
+	    dataType:"json",
+	    success: function(data){
+	        console.log(data);
+	    }
+	});
+
+
+}
+</script>
+</html>
